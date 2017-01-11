@@ -1,0 +1,23 @@
+
+# common ignore
+*.htm
+*.html
+*.jpg
+*.txt
+
+# quartus ignore
+greybox_tmp/
+db/
+incremental_db/
+*.pof
+*.sld
+*.done
+*.smsg
+*.jdi
+*.pin
+*.qws
+*.sof
+*.rpt
+*.summary
+
+
