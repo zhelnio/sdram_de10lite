@@ -92,7 +92,7 @@ Sdram_Control	u1	(	//	HOST Side
 							//	FIFO Write Side 
 						   .WR_DATA(writedata),
 							.WR(write),
-							.WR_ADDR(0),
+							.WR_ADDR(0),					//WTF?? realy? addr input is always null??	
 							.WR_MAX_ADDR(25'h1ffffff),		//	
 							.WR_LENGTH(9'h80),
 							.WR_LOAD(!test_global_reset_n ),
@@ -100,7 +100,7 @@ Sdram_Control	u1	(	//	HOST Side
 							//	FIFO Read Side 
 						   .RD_DATA(readdata),
 				        	.RD(read),
-				        	.RD_ADDR(0),			//	Read odd field and bypess blanking
+				        	.RD_ADDR(0),			//WTF?? realy? addr input is always null??	
 							.RD_MAX_ADDR(25'h1ffffff),
 							.RD_LENGTH(9'h80),
 				        	.RD_LOAD(!test_global_reset_n ),
@@ -125,7 +125,7 @@ pll_test u2(
 	.locked());
 
 	
-	
+//WTF?? realy? no address output??	
  RW_Test u3(
       .iCLK(clk_test),
 		.iRST_n(test_software_reset_n),

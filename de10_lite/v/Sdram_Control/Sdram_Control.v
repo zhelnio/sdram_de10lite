@@ -196,7 +196,9 @@ command command1(
                 .CAS_N(ICAS_N),
                 .WE_N(IWE_N)
                 );
-                
+
+//WTF?? Great! Input of Sdram_Control is identical to output!
+//WTF?? Step 2. from mDATAIN -> DQOUT                
 sdr_data_path data_path1(
                 .CLK(CLK),
                 .RESET_N(RESET_N),
@@ -206,6 +208,7 @@ sdr_data_path data_path1(
                 .DQM(IDQM)
                 );
 
+//WTF?? Step 1. from WR_DATA -> mDATAIN
 Sdram_WR_FIFO 	write_fifo1(
 				.data(WR_DATA),
 				.wrreq(WR),
@@ -231,7 +234,7 @@ begin
  end
 end				
 
-
+//WTF?? Step 5. from mDATAOUT -> RD_DATA
 Sdram_RD_FIFO 	read_fifo1(
 				.data(mDATAOUT),
 				.wrreq(OUT_VALID&RD_MASK),
@@ -258,9 +261,12 @@ begin
 	PM_STOP	<= (ST==SC_CL+mLENGTH)			?	1'b1	:	1'b0;
 	PM_DONE	<= (ST==SC_CL+SC_RCD+mLENGTH+2)	?	1'b1	:	1'b0;
 	DQM		<= ( active && (ST>=SC_CL) )	?	(	((ST==SC_CL+mLENGTH) && Write)?	2'b11	:	2'b00	)	:	2'b11	;
+	
+	//WTF?? Step 4. from DQ -> mDATAOUT
 	mDATAOUT<= DQ;
 end
 
+//WTF?? Step 3. from DQOUT -> DQ
 assign  DQ = oe ? DQOUT : `DSIZE'hzzzz;
 assign	active	=	Read | Write;
 

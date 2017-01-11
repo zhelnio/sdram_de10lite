@@ -28,7 +28,7 @@ begin
  		DQM		<=	DM;                 
 end
 
-assign DQOUT = DATAIN;
+assign DQOUT = DATAIN;  //WTF?? output is identical to input?
 
 endmodule
 
